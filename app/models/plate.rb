@@ -3,7 +3,7 @@ class Plate < ApplicationRecord
 
   validates :plate, length: { maximum: 7, minimum: 1 }
   validates :plate, format: { without: /\s/, message: "can not contain spaces" }
-  validates :plate, format: { with: /[A-Z][1-9]/, message: "must only contain valid characters (A-Z 1-9)" }
+  validates :plate, format: { without: /[\W]/, message: "must only contain valid characters (A-Z 1-9)" }
   validates :plate, uniqueness: { message: "must be unique" }
   validates :state, inclusion: { in: states, message: "must be a valid US state" }
 end
