@@ -1,0 +1,27 @@
+<%= form_with(model: plate) do |form| %>
+  <% if plate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plate.errors.count, "error") %> prohibited this plate from being saved:</h2>
+
+      <ul>
+        <% plate.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :plate %>
+    <%= form.text_field :plate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
