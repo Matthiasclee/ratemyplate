@@ -15,7 +15,7 @@
   <%= link_to 'New Plate', new_plate_path %>
 
   <tbody>
-    <% @plates.reverse.each do |plate| %>
+    <% @plates.sort_by(&:score).reverse.each do |plate| %>
       <tr>
         <td><%= link_to "#{plate.plate}", plate %></td>
         <td><%= plate.state %></td>
