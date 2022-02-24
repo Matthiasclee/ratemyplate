@@ -15,10 +15,6 @@ class PlatesController < ApplicationController
     @plate = Plate.new
   end
 
-  # GET /plates/1/edit
-  def edit
-  end
-
   # POST /plates or /plates.json
   def create
     @plate = Plate.new(plate_params)
