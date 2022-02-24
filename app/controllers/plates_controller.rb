@@ -18,6 +18,7 @@ class PlatesController < ApplicationController
   # POST /plates or /plates.json
   def create
     @plate = Plate.new(plate_params)
+    @plate.score = 0
 
     respond_to do |format|
       if @plate.save

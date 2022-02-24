@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_020539) do
+ActiveRecord::Schema.define(version: 2022_02_24_023402) do
 
   create_table "plates", force: :cascade do |t|
     t.string "plate"
     t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "score"
   end
 
 end
