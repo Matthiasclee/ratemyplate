@@ -20,6 +20,7 @@
         <td><%= link_to "#{plate.plate}", plate %></td>
         <td><%= plate.state %></td>
         <td><%= plate.score %></td>
+        <td><%= link_to 'up', up_plate_path(plate) %></td>
       </tr>
     <% end %>
   </tbody>

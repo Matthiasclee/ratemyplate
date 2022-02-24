@@ -15,6 +15,13 @@ class PlatesController < ApplicationController
     @plate = Plate.new
   end
 
+  def up
+    @plate = Plate.find_by(params[:id])
+    @plate.score = @plate.score + 1
+    @plate.save
+    redirect_to plate_path
+  end
+
   # POST /plates or /plates.json
   def create
     @plate = Plate.new(plate_params)
