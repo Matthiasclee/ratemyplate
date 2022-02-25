@@ -47,6 +47,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state)
+      params.require(:plate).permit(:plate, :state, :imageurl)
     end
 end

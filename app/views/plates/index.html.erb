@@ -18,6 +18,7 @@
     <% @plates.sort_by(&:score).reverse.each do |plate| %>
       <tr>
         <td><%= link_to "#{plate.plate}", plate %></td>
+        <td><img src="<%= plate.imageurl %>"></td>
         <td><%= plate.state %></td>
         <td><%= plate.score %></td>
         <td><%= link_to 'up', up_plate_path(plate), remote: true %></td>
