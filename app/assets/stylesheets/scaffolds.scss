@@ -17,11 +17,23 @@ a {
   color: #000; }
 
 a:visited {
-  color: #666; }
+  color: #000; }
 
 a:hover {
   color: #fff;
   background-color: #000; }
+
+a:hover.upvote {
+  color: green;
+  background-color: #fff; }
+
+a:visited.upvote {
+  pointer-events: none;
+  cursor: default;
+  color: lightgreen; }
+
+a.upvote {
+  text-decoration: none; }
 
 th {
   padding-bottom: 5px; }

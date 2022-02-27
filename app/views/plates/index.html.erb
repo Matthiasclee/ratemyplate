@@ -17,11 +17,18 @@
   <tbody>
     <% @plates.sort_by(&:score).reverse.each do |plate| %>
       <tr>
-        <td><%= link_to "#{plate.plate}", plate %></td>
-        <td><img src="<%= plate.imageurl %>"></td>
-        <td><%= plate.state %></td>
-        <td><%= plate.score %></td>
-        <td><%= link_to 'up', up_plate_path(plate), remote: true %></td>
+        <td>
+          <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "cur_url = window.location.href; history.replaceState({},'','#{up_plate_path(plate)}'); history.replaceState({},'',cur_url)",remote: true %> </h1>
+        <!-- ˅ -->
+          <h2> <%= plate.score %> </h2>
+        </td>
+        <td>
+          <h3> <%= (link_to "#{plate.plate}", plate) + " -- " + plate.state %> </h3>
+
+          <% if plate.imageurl.to_s == 2 %>
+            <img height="125px" width="250px" src="<%= plate.imageurl %>">
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
