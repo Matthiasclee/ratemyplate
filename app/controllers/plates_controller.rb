@@ -27,10 +27,14 @@ class PlatesController < ApplicationController
 
   # POST /plates or /plates.json
   def create
-    @plate = Plate.new(plate_params)
+    @plate = Plate.new(plate_params.except(:image))
     @plate.score = 0
     @plate.plate = @plate.plate.gsub("0", "O")
-    @plate.imageurl = nil if params[:imageurl].to_s == ""
+
+    if plate_params[:image]
+      file_id = (('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a).shuffle[0..50].join
+      File.write(Rails.root.join('public', 'uploads', plate_params[:image].original_filename + file_id), plate_params[:image].read, mode: 'wb')
+    end
 
     respond_to do |format|
       if @plate.save
@@ -51,6 +55,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :imageurl, :sort_by)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by)
     end
 end
