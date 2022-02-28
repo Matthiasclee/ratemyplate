@@ -34,6 +34,7 @@ class PlatesController < ApplicationController
     if plate_params[:image]
       file_id = (('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a).shuffle[0..50].join
       File.write(Rails.root.join('public', 'uploads', plate_params[:image].original_filename + file_id), plate_params[:image].read, mode: 'wb')
+      @plate.imageurl = "static?filename=" + plate_params[:image].original_filename + file_id
     end
 
     respond_to do |format|
