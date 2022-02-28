@@ -30,6 +30,7 @@ class PlatesController < ApplicationController
     @plate = Plate.new(plate_params)
     @plate.score = 0
     @plate.plate = @plate.plate.gsub("0", "O")
+    @plate.imageurl = nil if params[:imageurl].to_s == ""
 
     respond_to do |format|
       if @plate.save
