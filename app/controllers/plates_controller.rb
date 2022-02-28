@@ -3,6 +3,9 @@ class PlatesController < ApplicationController
 
   # GET /plates or /plates.json
   def index
+    allowed_sorts = [:score, :score_least, :newest, :oldest]
+    @sort_by = :score
+    @sort_by = params[:sort_by].to_sym if params[:sort_by] && allowed_sorts.include?(params[:sort_by].to_sym)
     @plates = Plate.all
   end
 
@@ -47,6 +50,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :imageurl)
+      params.require(:plate).permit(:plate, :state, :imageurl, :sort_by)
     end
 end

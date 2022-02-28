@@ -2,20 +2,22 @@
 
 <h1>Plates</h1>
 
+<%= link_to 'Highest', '?sort_by=score'%>
+<%= link_to 'Lowest', '?sort_by=score_least'%>
+<%= link_to 'Newest', '?sort_by=newest'%>
+<%= link_to 'Oldest', '?sort_by=oldest' %>
+<br>
+<%= link_to 'New Plate', new_plate_path %>
+
 <table>
-  <thead>
-    <tr>
-      <th>Plate</th>
-      <th>State</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <br>
-  <%= link_to 'New Plate', new_plate_path %>
-
   <tbody>
-    <% @plates.sort_by(&:score).reverse.each do |plate| %>
+    <% 
+      plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
+      plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
+      plates_sorted = @plates.reverse if @sort_by == :newest
+      plates_sorted = @plates if @sort_by == :oldest
+    %>
+    <% plates_sorted.each do |plate| %>
       <tr>
         <td>
           <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "cur_url = window.location.href; history.replaceState({},'','#{up_plate_path(plate)}'); history.replaceState({},'',cur_url)",remote: true %> </h1>
