@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_011051) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"
+    t.string "imageurl"
   end
 
 end
