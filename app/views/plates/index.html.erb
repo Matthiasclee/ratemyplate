@@ -20,9 +20,9 @@
     <% plates_sorted.each do |plate| %>
       <tr>
         <td>
-          <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "cur_url = window.location.href; history.replaceState({},'','#{up_plate_path(plate)}'); history.replaceState({},'',cur_url)",remote: true %> </h1>
+          <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
         <!-- ˅ -->
-          <h2> <%= plate.score %> </h2>
+          <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
         </td>
         <td>
           <h3> <%= (link_to "#{plate.plate}", plate) + " -- " + plate.state %> </h3>
@@ -35,3 +35,5 @@
     <% end %>
   </tbody>
 </table>
+
+<script>disableUpvotedPlates()</script>
