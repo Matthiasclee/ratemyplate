@@ -4,9 +4,18 @@ class PlatesController < ApplicationController
   # GET /plates or /plates.json
   def index
     allowed_sorts = [:score, :score_least, :newest, :oldest]
+
+    states = %w(AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY)
+    scopes = [:all] + states
+
     @sort_by = :score
     @sort_by = params[:sort_by].to_sym if params[:sort_by] && allowed_sorts.include?(params[:sort_by].to_sym)
-    @plates = Plate.all
+
+    @scope = :all
+    @scope = params[:scope].to_sym if params[:scope] && scopes.include?(params[:scope].to_sym)
+
+    @plates = Plate.all if @scope == :all
+    @plates = Plate.where(state: @scope) if @scope != :all
   end
 
   # GET /plates/1 or /plates/1.json
@@ -56,6 +65,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :image, :sort_by)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope)
     end
 end
