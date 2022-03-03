@@ -38,7 +38,7 @@ class PlatesController < ApplicationController
   def create
     @plate = Plate.new(plate_params.except(:image))
     @plate.score = 0
-    @plate.plate = @plate.plate.gsub("0", "O")
+    @plate.plate = @plate.plate.gsub("0", "O").upcase
 
     if plate_params[:image]
       file_id = (('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a).shuffle[0..50].join
