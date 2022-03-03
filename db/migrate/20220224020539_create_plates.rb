@@ -6,5 +6,6 @@ class CreatePlates < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :plates, [:plate, :state], unique: true
   end
 end

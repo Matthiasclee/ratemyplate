@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_201938) do
+ActiveRecord::Schema.define(version: 2022_02_28_014557) do
 
   create_table "plates", force: :cascade do |t|
     t.string "plate"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2022_02_24_201938) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"
     t.string "imageurl"
-    t.index ["plate", "state"], name: "index_plates_on_plate_and_state", unique: true
   end
 
 end

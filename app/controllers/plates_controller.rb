@@ -12,7 +12,7 @@ class PlatesController < ApplicationController
     @sort_by = params[:sort_by].to_sym if params[:sort_by] && allowed_sorts.include?(params[:sort_by].to_sym)
 
     @scope = :all
-    @scope = params[:scope].to_sym if params[:scope] && scopes.include?(params[:scope].to_sym)
+    @scope = params[:scope].to_sym if params[:scope] && scopes.include?(params[:scope])
 
     @plates = Plate.all if @scope == :all
     @plates = Plate.where(state: @scope) if @scope != :all
