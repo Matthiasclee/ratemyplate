@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
   def get_item
-    send_file Rails.root.join('public', 'uploads', params[:filename]), filename: params[:filename][0...-51]
+    send_data(Plate.find_by(id: params[:id]).image, filename: "plate")
   end
 end

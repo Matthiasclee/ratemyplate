@@ -41,13 +41,14 @@ class PlatesController < ApplicationController
     @plate.plate = @plate.plate.gsub("0", "O").upcase
 
     if plate_params[:image]
-      file_id = (('a'..'z').to_a + (0..9).to_a + ('A'..'Z').to_a).shuffle[0..50].join
-      File.write(Rails.root.join('public', 'uploads', plate_params[:image].original_filename + file_id), plate_params[:image].read, mode: 'wb')
-      @plate.imageurl = "static?filename=" + plate_params[:image].original_filename + file_id
+      File.write(Rails.root.join("tmpimg"), plate_params[:image].read, mode: "wb")
+      @plate.image = File.read("tmpimg")
     end
 
     respond_to do |format|
       if @plate.save
+        @plate.imageurl = @plate.imageurl = "static?id=" + @plate.id.to_s
+        @plate.save
         format.html { redirect_to plate_url(@plate), notice: "Plate was successfully created." }
         format.json { render :show, status: :created, location: @plate }
       else
