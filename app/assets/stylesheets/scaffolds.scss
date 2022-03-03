@@ -28,9 +28,11 @@ a:hover.upvote {
   background-color: #fff; }
 
 a:visited.upvote {
-  pointer-events: none;
-  cursor: default;
   color: lightgreen; }
+
+.upvoted {
+  pointer-events: none !important;
+  cursor: default !important; }
 
 a.upvote {
   text-decoration: none; }
