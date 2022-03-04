@@ -8,70 +8,82 @@
 
 <h2 style = "margin-bottom: 0px;">Sort By</h2>
 <div style = "margin-top: 0px;">
-  <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}"%>
-  <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}"%>
-  <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}"%>
-  <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}" %>
+  <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}"%>
+  <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}"%>
+  <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}"%>
+  <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}" %>
 </div>
 
 
 <h2 style = "margin-bottom: 0px;">State</h2>
 <div style = "margin-top: 0px;">
-  <%= link_to 'All', "?sort_by=#{@sort_by}&scope=all" %>
-  <%= link_to 'Alaska', "?sort_by=#{@sort_by}&scope=AK" %>
-  <%= link_to 'Alabama', "?sort_by=#{@sort_by}&scope=AL" %>
-  <%= link_to 'Arkansas', "?sort_by=#{@sort_by}&scope=AR" %>
-  <%= link_to 'Arizona', "?sort_by=#{@sort_by}&scope=AZ" %>
-  <%= link_to 'California', "?sort_by=#{@sort_by}&scope=CA" %>
-  <%= link_to 'Colorado', "?sort_by=#{@sort_by}&scope=CO" %>
-  <%= link_to 'Connecticut', "?sort_by=#{@sort_by}&scope=CT" %>
-  <%= link_to 'Washington D.C.', "?sort_by=#{@sort_by}&scope=DC" %>
-  <%= link_to 'Delaware', "?sort_by=#{@sort_by}&scope=DE" %>
-  <%= link_to 'Florida', "?sort_by=#{@sort_by}&scope=FL" %>
-  <%= link_to 'Georgia', "?sort_by=#{@sort_by}&scope=GA" %>
-  <%= link_to 'Hawaii', "?sort_by=#{@sort_by}&scope=HI" %>
-  <%= link_to 'Iowa', "?sort_by=#{@sort_by}&scope=IA" %>
-  <%= link_to 'Idaho', "?sort_by=#{@sort_by}&scope=ID" %>
-  <%= link_to 'Illinois', "?sort_by=#{@sort_by}&scope=IL" %>
-  <%= link_to 'Indiana', "?sort_by=#{@sort_by}&scope=IN" %>
-  <%= link_to 'Kansas', "?sort_by=#{@sort_by}&scope=KS" %>
-  <%= link_to 'Kentucky', "?sort_by=#{@sort_by}&scope=KY" %>
-  <%= link_to 'Louisiana', "?sort_by=#{@sort_by}&scope=LA" %>
-  <%= link_to 'Massachusetts', "?sort_by=#{@sort_by}&scope=MA" %>
-  <%= link_to 'Maryland', "?sort_by=#{@sort_by}&scope=MD" %>
-  <%= link_to 'Maine', "?sort_by=#{@sort_by}&scope=ME" %>
-  <%= link_to 'Michigan', "?sort_by=#{@sort_by}&scope=MI" %>
-  <%= link_to 'Minnesota', "?sort_by=#{@sort_by}&scope=MN" %>
-  <%= link_to 'Missouri', "?sort_by=#{@sort_by}&scope=MO" %>
-  <%= link_to 'Mississippi', "?sort_by=#{@sort_by}&scope=MS" %>
-  <%= link_to 'Montana', "?sort_by=#{@sort_by}&scope=MT" %>
-  <%= link_to 'North Carolina', "?sort_by=#{@sort_by}&scope=NC" %>
-  <%= link_to 'North Dakota', "?sort_by=#{@sort_by}&scope=ND" %>
-  <%= link_to 'Nebraska', "?sort_by=#{@sort_by}&scope=NE" %>
-  <%= link_to 'New Hampshire', "?sort_by=#{@sort_by}&scope=NH" %>
-  <%= link_to 'New Jersey', "?sort_by=#{@sort_by}&scope=NJ" %>
-  <%= link_to 'New Mexico', "?sort_by=#{@sort_by}&scope=NM" %>
-  <%= link_to 'Nevada', "?sort_by=#{@sort_by}&scope=NV" %>
-  <%= link_to 'New York', "?sort_by=#{@sort_by}&scope=NY" %>
-  <%= link_to 'Ohio', "?sort_by=#{@sort_by}&scope=OH" %>
-  <%= link_to 'Oklahoma', "?sort_by=#{@sort_by}&scope=OK" %>
-  <%= link_to 'Oregon', "?sort_by=#{@sort_by}&scope=OR" %>
-  <%= link_to 'Pennsylvania', "?sort_by=#{@sort_by}&scope=PA" %>
-  <%= link_to 'Rhode Island', "?sort_by=#{@sort_by}&scope=RI" %>
-  <%= link_to 'South Carolina', "?sort_by=#{@sort_by}&scope=SC" %>
-  <%= link_to 'South Dakota', "?sort_by=#{@sort_by}&scope=SD" %>
-  <%= link_to 'Tennessee', "?sort_by=#{@sort_by}&scope=TN" %>
-  <%= link_to 'Texas', "?sort_by=#{@sort_by}&scope=TX" %>
-  <%= link_to 'Utah', "?sort_by=#{@sort_by}&scope=UT" %>
-  <%= link_to 'Virginia', "?sort_by=#{@sort_by}&scope=VA" %>
-  <%= link_to 'Vermont', "?sort_by=#{@sort_by}&scope=VT" %>
-  <%= link_to 'Washington', "?sort_by=#{@sort_by}&scope=WA" %>
-  <%= link_to 'Wisconsin', "?sort_by=#{@sort_by}&scope=WI" %>
-  <%= link_to 'West Virginia', "?sort_by=#{@sort_by}&scope=WV" %>
-  <%= link_to 'Wyoming', "?sort_by=#{@sort_by}&scope=WY" %>
+  <%= link_to 'All', "?sort_by=#{@sort_by}&scope=all&query=#{@query}" %>
+  <%= link_to 'Alaska', "?sort_by=#{@sort_by}&scope=AK&query=#{@query}" %>
+  <%= link_to 'Alabama', "?sort_by=#{@sort_by}&scope=AL&query=#{@query}" %>
+  <%= link_to 'Arkansas', "?sort_by=#{@sort_by}&scope=AR&query=#{@query}" %>
+  <%= link_to 'Arizona', "?sort_by=#{@sort_by}&scope=AZ&query=#{@query}" %>
+  <%= link_to 'California', "?sort_by=#{@sort_by}&scope=CA&query=#{@query}" %>
+  <%= link_to 'Colorado', "?sort_by=#{@sort_by}&scope=CO&query=#{@query}" %>
+  <%= link_to 'Connecticut', "?sort_by=#{@sort_by}&scope=CT&query=#{@query}" %>
+  <%= link_to 'Washington D.C.', "?sort_by=#{@sort_by}&scope=DC&query=#{@query}" %>
+  <%= link_to 'Delaware', "?sort_by=#{@sort_by}&scope=DE&query=#{@query}" %>
+  <%= link_to 'Florida', "?sort_by=#{@sort_by}&scope=FL&query=#{@query}" %>
+  <%= link_to 'Georgia', "?sort_by=#{@sort_by}&scope=GA&query=#{@query}" %>
+  <%= link_to 'Hawaii', "?sort_by=#{@sort_by}&scope=HI&query=#{@query}" %>
+  <%= link_to 'Iowa', "?sort_by=#{@sort_by}&scope=IA&query=#{@query}" %>
+  <%= link_to 'Idaho', "?sort_by=#{@sort_by}&scope=ID&query=#{@query}" %>
+  <%= link_to 'Illinois', "?sort_by=#{@sort_by}&scope=IL&query=#{@query}" %>
+  <%= link_to 'Indiana', "?sort_by=#{@sort_by}&scope=IN&query=#{@query}" %>
+  <%= link_to 'Kansas', "?sort_by=#{@sort_by}&scope=KS&query=#{@query}" %>
+  <%= link_to 'Kentucky', "?sort_by=#{@sort_by}&scope=KY&query=#{@query}" %>
+  <%= link_to 'Louisiana', "?sort_by=#{@sort_by}&scope=LA&query=#{@query}" %>
+  <%= link_to 'Massachusetts', "?sort_by=#{@sort_by}&scope=MA&query=#{@query}" %>
+  <%= link_to 'Maryland', "?sort_by=#{@sort_by}&scope=MD&query=#{@query}" %>
+  <%= link_to 'Maine', "?sort_by=#{@sort_by}&scope=ME&query=#{@query}" %>
+  <%= link_to 'Michigan', "?sort_by=#{@sort_by}&scope=MI&query=#{@query}" %>
+  <%= link_to 'Minnesota', "?sort_by=#{@sort_by}&scope=MN&query=#{@query}" %>
+  <%= link_to 'Missouri', "?sort_by=#{@sort_by}&scope=MO&query=#{@query}" %>
+  <%= link_to 'Mississippi', "?sort_by=#{@sort_by}&scope=MS&query=#{@query}" %>
+  <%= link_to 'Montana', "?sort_by=#{@sort_by}&scope=MT&query=#{@query}" %>
+  <%= link_to 'North Carolina', "?sort_by=#{@sort_by}&scope=NC&query=#{@query}" %>
+  <%= link_to 'North Dakota', "?sort_by=#{@sort_by}&scope=ND&query=#{@query}" %>
+  <%= link_to 'Nebraska', "?sort_by=#{@sort_by}&scope=NE&query=#{@query}" %>
+  <%= link_to 'New Hampshire', "?sort_by=#{@sort_by}&scope=NH&query=#{@query}" %>
+  <%= link_to 'New Jersey', "?sort_by=#{@sort_by}&scope=NJ&query=#{@query}" %>
+  <%= link_to 'New Mexico', "?sort_by=#{@sort_by}&scope=NM&query=#{@query}" %>
+  <%= link_to 'Nevada', "?sort_by=#{@sort_by}&scope=NV&query=#{@query}" %>
+  <%= link_to 'New York', "?sort_by=#{@sort_by}&scope=NY&query=#{@query}" %>
+  <%= link_to 'Ohio', "?sort_by=#{@sort_by}&scope=OH&query=#{@query}" %>
+  <%= link_to 'Oklahoma', "?sort_by=#{@sort_by}&scope=OK&query=#{@query}" %>
+  <%= link_to 'Oregon', "?sort_by=#{@sort_by}&scope=OR&query=#{@query}" %>
+  <%= link_to 'Pennsylvania', "?sort_by=#{@sort_by}&scope=PA&query=#{@query}" %>
+  <%= link_to 'Rhode Island', "?sort_by=#{@sort_by}&scope=RI&query=#{@query}" %>
+  <%= link_to 'South Carolina', "?sort_by=#{@sort_by}&scope=SC&query=#{@query}" %>
+  <%= link_to 'South Dakota', "?sort_by=#{@sort_by}&scope=SD&query=#{@query}" %>
+  <%= link_to 'Tennessee', "?sort_by=#{@sort_by}&scope=TN&query=#{@query}" %>
+  <%= link_to 'Texas', "?sort_by=#{@sort_by}&scope=TX&query=#{@query}" %>
+  <%= link_to 'Utah', "?sort_by=#{@sort_by}&scope=UT&query=#{@query}" %>
+  <%= link_to 'Virginia', "?sort_by=#{@sort_by}&scope=VA&query=#{@query}" %>
+  <%= link_to 'Vermont', "?sort_by=#{@sort_by}&scope=VT&query=#{@query}" %>
+  <%= link_to 'Washington', "?sort_by=#{@sort_by}&scope=WA&query=#{@query}" %>
+  <%= link_to 'Wisconsin', "?sort_by=#{@sort_by}&scope=WI&query=#{@query}" %>
+  <%= link_to 'West Virginia', "?sort_by=#{@sort_by}&scope=WV&query=#{@query}" %>
+  <%= link_to 'Wyoming', "?sort_by=#{@sort_by}&scope=WY&query=#{@query}" %>
 </div>
 
-<br>
+<h2> Search For </h2>
+<%= form_with(url: "/plates", method: :get) do |form| %>
+  <%= form.hidden_field :sort_by, value: @sort_by %>
+  <%= form.hidden_field :scope, value: @scope %>
+
+  <div class="field">
+    <%= form.text_field :query, value: @query %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :Search %>
+  </div>
+<% end %>
 
 <h3><%= sort_by_names[@sort_by] %> plates in <%= scope_names[@scope.to_s] %></h3>
 
