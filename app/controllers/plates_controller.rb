@@ -58,7 +58,7 @@ class PlatesController < ApplicationController
 
     respond_to do |format|
       if @plate.save
-        @plate.imageurl = @plate.imageurl = "static?id=" + @plate.id.to_s
+        @plate.imageurl = @plate.imageurl = "/static?id=" + @plate.id.to_s
         @plate.save
         format.html { redirect_to plate_url(@plate), notice: "Plate was successfully created." }
         format.json { render :show, status: :created, location: @plate }

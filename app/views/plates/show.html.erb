@@ -10,7 +10,7 @@
   <%= @plate.state %>
 </p>
 <% if @plate.imageurl %>
-  <img width="300px" src="<%= "/" + @plate.imageurl %>">
+  <img width="300px" src="<%= "#{'/' if @plate.imageurl[0] != "/"}" + @plate.imageurl %>">
 <% end %>
 
 <br>
