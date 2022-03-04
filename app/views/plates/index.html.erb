@@ -110,4 +110,9 @@
   </tbody>
 </table>
 
+<h3>
+  <%= link_to '<-- Previous page', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page - 1}" %>
+  <%= link_to 'Next page -->', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page + 1}" %>
+</h3>
+
 <script>disableUpvotedPlates()</script>

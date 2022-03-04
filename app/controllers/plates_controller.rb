@@ -29,7 +29,10 @@ class PlatesController < ApplicationController
     @plates_sorted = @plates if @sort_by == :oldest
     @plates = @plates_sorted
 
-    @page = 1
+    @original_page = 1
+    @original_page = params[:page].to_i if params[:page].to_i > 0
+
+    @page = 0
     @page = ((params[:page].to_i - 1) * ITEMS_PER_PAGE) if params[:page].to_i > 0
 
     @plates = @plates[@page..@page + ITEMS_PER_PAGE - 1]
