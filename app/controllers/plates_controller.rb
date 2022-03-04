@@ -20,7 +20,7 @@ class PlatesController < ApplicationController
     @plates = Plate.all if @scope == :all
     @plates = Plate.where(state: @scope) if @scope != :all
 
-    @plates = Plate.where("plate like?", "%#{@query}%")
+    @plates = @plates.where("plate like?", "%#{@query}%")
   end
 
   # GET /plates/1 or /plates/1.json
