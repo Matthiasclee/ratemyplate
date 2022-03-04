@@ -14,8 +14,13 @@ class PlatesController < ApplicationController
     @scope = :all
     @scope = params[:scope].to_sym if params[:scope] && scopes.include?(params[:scope])
 
+    @query = ""
+    @query = params[:query].upcase.gsub("0", "O") if params[:query]
+
     @plates = Plate.all if @scope == :all
     @plates = Plate.where(state: @scope) if @scope != :all
+
+    @plates = Plate.where("plate like?", "%#{@query}%")
   end
 
   # GET /plates/1 or /plates/1.json
@@ -66,6 +71,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query)
     end
 end
