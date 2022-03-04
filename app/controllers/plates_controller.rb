@@ -1,6 +1,6 @@
 class PlatesController < ApplicationController
   before_action :set_plate, only: %i[ show edit update destroy ]
-  ITEMS_PER_PAGE = 3
+  ITEMS_PER_PAGE = 25
 
   # GET /plates or /plates.json
   def index
