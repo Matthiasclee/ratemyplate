@@ -90,12 +90,8 @@
 <table>
   <tbody>
     <% 
-      plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
-      plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
-      plates_sorted = @plates.reverse if @sort_by == :newest
-      plates_sorted = @plates if @sort_by == :oldest
     %>
-    <% plates_sorted.each do |plate| %>
+    <% @plates.each do |plate| %>
       <tr>
         <td>
           <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
