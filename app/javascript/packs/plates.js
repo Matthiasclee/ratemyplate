@@ -15,8 +15,10 @@ function disableUpvotedPlates(){
   x = localStorage.hrefs.split(",")
   for (a in x){
     hrf = x[a]
-    document.querySelectorAll(`a[href='${hrf}']`)[0].classList.add("upvoted")
-    document.querySelectorAll(`a[href='${hrf}']`)[0].style.color = 'lightgreen'
+    if (document.querySelectorAll(`a[href='${hrf}']`).length == 1){
+      document.querySelectorAll(`a[href='${hrf}']`)[0].classList.add("upvoted")
+      document.querySelectorAll(`a[href='${hrf}']`)[0].style.color = 'lightgreen'
+    }
   }
 }
 
