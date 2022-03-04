@@ -35,7 +35,7 @@ class PlatesController < ApplicationController
     @page = 0
     @page = ((params[:page].to_i - 1) * ITEMS_PER_PAGE) if params[:page].to_i > 0
 
-    @plates = @plates[@page..@page + ITEMS_PER_PAGE - 1]
+    @plates = @plates[@page..@page + ITEMS_PER_PAGE - 1].to_a
   end
 
   # GET /plates/1 or /plates/1.json
