@@ -1,5 +1,6 @@
 class PlatesController < ApplicationController
   before_action :set_plate, only: %i[ show edit update destroy ]
+  ITEMS_PER_PAGE = 3
 
   # GET /plates or /plates.json
   def index
@@ -21,6 +22,17 @@ class PlatesController < ApplicationController
     @plates = Plate.where(state: @scope) if @scope != :all
 
     @plates = @plates.where("plate like?", "%#{@query}%")
+
+    @plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
+    @plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
+    @plates_sorted = @plates.reverse if @sort_by == :newest
+    @plates_sorted = @plates if @sort_by == :oldest
+    @plates = @plates_sorted
+
+    @page = 1
+    @page = ((params[:page].to_i - 1) * ITEMS_PER_PAGE) if params[:page].to_i > 0
+
+    @plates = @plates[@page..@page + ITEMS_PER_PAGE - 1]
   end
 
   # GET /plates/1 or /plates/1.json
@@ -77,6 +89,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query, :page)
     end
 end
