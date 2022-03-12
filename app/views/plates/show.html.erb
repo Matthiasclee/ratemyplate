@@ -1,18 +1,32 @@
 <p id="notice"><%= notice %></p>
+<% plate = @plate %>
+<% state_names = {"AK"=>"Alaska", "AL"=>"Alabama", "AR"=>"Arkansas", "AS"=>"American Samoa", "AZ"=>"Arizona", "CA"=>"California", "CO"=>"Colorado", "CT"=>"Connecticut", "DC"=>"District of Columbia", "DE"=>"Delaware", "FL"=>"Florida", "GA"=>"Georgia", "GU"=>"Guam", "HI"=>"Hawaii", "IA"=>"Iowa", "ID"=>"Idaho", "IL"=>"Illinois", "IN"=>"Indiana", "KS"=>"Kansas", "KY"=>"Kentucky", "LA"=>"Louisiana", "MA"=>"Massachusetts", "MD"=>"Maryland", "ME"=>"Maine", "MI"=>"Michigan", "MN"=>"Minnesota", "MO"=>"Missouri", "MS"=>"Mississippi", "MT"=>"Montana", "NC"=>"North Carolina", "ND"=>"North Dakota", "NE"=>"Nebraska", "NH"=>"New Hampshire", "NJ"=>"New Jersey", "NM"=>"New Mexico", "NV"=>"Nevada", "NY"=>"New York", "OH"=>"Ohio", "OK"=>"Oklahoma", "OR"=>"Oregon", "PA"=>"Pennsylvania", "PR"=>"Puerto Rico", "RI"=>"Rhode Island", "SC"=>"South Carolina", "SD"=>"South Dakota", "TN"=>"Tennessee", "TX"=>"Texas", "UT"=>"Utah", "VA"=>"Virginia", "VI"=>"Virgin Islands", "VT"=>"Vermont", "WA"=>"Washington", "WI"=>"Wisconsin", "WV"=>"West Virginia", "WY"=>"Wyoming"} %>
 
-<p>
-  <strong>Plate:</strong>
-  <%= @plate.plate %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @plate.state %>
-</p>
-<% if @plate.imageurl %>
-  <img width="300px" src="<%= "#{'/' if @plate.imageurl[0] != "/"}" + @plate.imageurl %>">
+<% if plate.meaning %>
+  <h3> <%= plate.meaning %> </h3>
+  <h5> <%= plate.plate %> </h5>
+<% else %>
+  <h3> <%= plate.plate %> </h3>
 <% end %>
 
-<br>
+<h4>State: <%= state_names[plate.state] %> (<%= plate.state %>)</h4>
+<h4>Spotted on: <%= plate.created_at %> </h4>
 
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
+        <!-- ˅ -->
+        <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
+      </td>
+      <td>
+        <% if plate.imageurl %>
+          <img width="300px" src="<%= plate.imageurl %>">
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script>disableUpvotedPlates()</script>
 <%= link_to 'Back', plates_path %>
