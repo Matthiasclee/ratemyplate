@@ -22,7 +22,7 @@
       </td>
       <td>
         <% if plate.imageurl %>
-          <img width="300px" src="<%= plate.imageurl %>">
+          <img width="300px" src="<%= plate.imageurl[0] == "/" ? plate.imageurl : "/" + plate.imageurl %>">
         <% end %>
       </td>
     </tr>
