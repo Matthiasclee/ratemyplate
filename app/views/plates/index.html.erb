@@ -47,7 +47,11 @@
           <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
         </td>
         <td>
-          <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black') + " -- " + plate.state %> </h3>
+          <% if plate.meaning %>
+            <h3> <%= (link_to "#{plate.meaning} (#{plate.plate}", plate, class: 'always_black') + ") -- " + plate.state %> </h3>
+          <% else %>
+            <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black') + " -- " + plate.state %> </h3>
+          <% end %>
 
           <% if plate.imageurl %>
             <img width="300px" src="<%= plate.imageurl %>">

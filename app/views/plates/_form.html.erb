@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :meaning %>
+    <%= form.text_field :meaning, placeholder: "Meaning of plate" %>
+  </div>
+
+  <div class="field">
     <%= form.label :plate %>
-    <%= form.text_field :plate %>
+    <%= form.text_field :plate, placeholder: "Exact plate number" %>
   </div>
 
   <div class="field">

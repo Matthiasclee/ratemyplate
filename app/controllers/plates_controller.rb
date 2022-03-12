@@ -56,7 +56,7 @@ class PlatesController < ApplicationController
 
   # POST /plates or /plates.json
   def create
-    @plate = Plate.new(plate_params.except(:image))
+    @plate = Plate.new(plate_params.except(:image, :meaning))
     @plate.score = 0
     @plate.plate = @plate.plate.gsub("0", "O").upcase
 
@@ -65,6 +65,8 @@ class PlatesController < ApplicationController
     @plate.state[0] = @plate.state[0].upcase
     @plate.state = state_names.key(@plate.state)
 
+    @plate.meaning = @plate.plate
+    @plate.meaning = plate_params[:meaning] if plate_params[:meaning].length > 0
 
     if plate_params[:image]
       File.write(Rails.root.join("tmpimg"), plate_params[:image].read, mode: "wb")
@@ -92,6 +94,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query, :page)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query, :page, :meaning)
     end
 end
