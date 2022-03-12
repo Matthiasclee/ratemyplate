@@ -2,34 +2,35 @@
 <% sort_by_names = {score: "Highest voted", score_least: "Lowest voted", newest: "Newest", oldest: "Oldest"} %>
 <% scope_names = {"all" => "The United States", "AK"=>"Alaska", "AL"=>"Alabama", "AR"=>"Arkansas", "AS"=>"American Samoa", "AZ"=>"Arizona", "CA"=>"California", "CO"=>"Colorado", "CT"=>"Connecticut", "DC"=>"District of Columbia", "DE"=>"Delaware", "FL"=>"Florida", "GA"=>"Georgia", "GU"=>"Guam", "HI"=>"Hawaii", "IA"=>"Iowa", "ID"=>"Idaho", "IL"=>"Illinois", "IN"=>"Indiana", "KS"=>"Kansas", "KY"=>"Kentucky", "LA"=>"Louisiana", "MA"=>"Massachusetts", "MD"=>"Maryland", "ME"=>"Maine", "MI"=>"Michigan", "MN"=>"Minnesota", "MO"=>"Missouri", "MS"=>"Mississippi", "MT"=>"Montana", "NC"=>"North Carolina", "ND"=>"North Dakota", "NE"=>"Nebraska", "NH"=>"New Hampshire", "NJ"=>"New Jersey", "NM"=>"New Mexico", "NV"=>"Nevada", "NY"=>"New York", "OH"=>"Ohio", "OK"=>"Oklahoma", "OR"=>"Oregon", "PA"=>"Pennsylvania", "PR"=>"Puerto Rico", "RI"=>"Rhode Island", "SC"=>"South Carolina", "SD"=>"South Dakota", "TN"=>"Tennessee", "TX"=>"Texas", "UT"=>"Utah", "VA"=>"Virginia", "VI"=>"Virgin Islands", "VT"=>"Vermont", "WA"=>"Washington", "WI"=>"Wisconsin", "WV"=>"West Virginia", "WY"=>"Wyoming"} %>
 
-<h1>Plates</h1>
-<h3> <%= link_to 'New Plate', new_plate_path %> </h3>
-<br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to 'Gr8Pl8', root_path, class: "navbar-brand always_black", style: "width: 15%; min-width: 150px;" %>
 
-<h2 style = "margin-bottom: 0px;">Sort By</h2>
-<div style = "margin-top: 0px;">
-  <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}"%>
-  <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}"%>
-  <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}"%>
-  <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}" %>
-</div>
+  <%= link_to 'Submit new plate', new_plate_path, class: "btn btn-primary nav-link always_black" %>
 
-<%= render "plates/statelist" %>
+  <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-secondary nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-secondary nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-secondary nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-secondary nav-link", style: "width: 15%; min-width: 150px;" %>
+</nav>
 
-<h2> Search For </h2>
-<%= form_with(url: "/plates", method: :get) do |form| %>
+<div id="s" style="text-align: center;">
+<%= form_with(url: "/plates", method: :get, class: "form-inline my-2 my-lg-0") do |form| %>
   <%= form.hidden_field :sort_by, value: @sort_by %>
   <%= form.hidden_field :scope, value: @scope %>
 
-  <div class="field">
-    <%= form.text_field :query, value: @query %>
-  </div>
+  <%= form.text_field :query, value: @query, class: "form-control mr-sm-2", style: "display: inline-block; width: 85%" %>
 
-  <div class="actions">
-    <%= form.submit :Search %>
-  </div>
+  <%= form.submit :Search, class: "btn btn-outline-success my-2 my-sm-0", style: "display: inline-block;" %>
 <% end %>
-
+</div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <%= render "plates/statelist" %>
+  </div>
+</div>
 <h3><%= sort_by_names[@sort_by] %> plates in <%= scope_names[@scope.to_s] %></h3>
 
 <table>
@@ -44,7 +45,7 @@
           <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
         </td>
         <td>
-          <h3> <%= (link_to "#{plate.plate}", plate) + " -- " + plate.state %> </h3>
+          <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black') + " -- " + plate.state %> </h3>
 
           <% if plate.imageurl %>
             <img width="300px" src="<%= plate.imageurl %>">
@@ -55,9 +56,9 @@
   </tbody>
 </table>
 
-<h3>
-  <%= link_to '<-- Previous page', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page - 1}" %>
-  <%= link_to 'Next page -->', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page + 1}" %>
+<h3 style="text-align: center;">
+  <%= link_to '<-- Previous page', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page - 1}", class: "always_black btn btn-secondary" %>
+  <%= link_to 'Next page -->', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page + 1}", class: "always_black btn btn-secondary" %>
 </h3>
 
 <script>disableUpvotedPlates()</script>
