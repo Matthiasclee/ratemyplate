@@ -37,22 +37,28 @@
 
 <table>
   <tbody>
-    <% 
-    %>
     <% @plates.each do |plate| %>
       <tr>
         <td>
           <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
-        <!-- ˅ -->
+          <!-- ˅ -->
           <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
         </td>
         <td>
           <% if plate.meaning %>
-            <h3> <%= (link_to "#{plate.meaning} (#{plate.plate}", plate, class: 'always_black') + ") -- " + plate.state %> </h3>
+            <h3> <%= plate.meaning %> </h3>
+            <div class="container">
+              <img src="/blank_plate/<%= plate.state %>", style="width: 150px; opacity: 0.75;">
+              <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h3>
+            </div>
           <% else %>
-            <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black') + " -- " + plate.state %> </h3>
+            <div class="container">
+              <img src="/blank_plate/<%= plate.state %>", style="width: 150px; opacity: 0.75;">
+              <h3> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h3>
+            </div>
           <% end %>
-
+        </td>
+        <td>
           <% if plate.imageurl %>
             <img width="300px" src="<%= plate.imageurl %>">
           <% end %>
