@@ -25,9 +25,9 @@
 </div>
 
 <div class="dropdown" style="text-align: center;">
-  <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="stateSelect" data-bs-toggle="dropdown"  aria-expanded="false">
     Select state: <%= scope_names[@scope.to_s] %>
-  </a>
+  </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <%= render "plates/statelist" %>
   </div>
