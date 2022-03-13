@@ -7,10 +7,10 @@
 
   <%= link_to 'Submit new plate', new_plate_path, class: "btn btn-success nav-link always_black" %>
 
-  <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
-  <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score_least ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
-  <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :newest ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
-  <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :oldest ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Highest voted', "#", onclick: "location.href='?sort_by=score&scope=#{@scope}&query=#{@query}'", class: "always_black btn btn-#{@sort_by == :score ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Lowest voted', "#", onclick: "location.href='?sort_by=score_least&scope=#{@scope}&query=#{@query}'", class: "always_black btn btn-#{@sort_by == :score_least ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Newest', "#", onclick: "location.href='?sort_by=newest&scope=#{@scope}&query=#{@query}'", class: "always_black btn btn-#{@sort_by == :newest ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
+  <%= link_to 'Oldest', "#", onclick: "location.href='?sort_by=oldest&scope=#{@scope}&query=#{@query}'", class: "always_black btn btn-#{@sort_by == :oldest ? "primary" : "secondary"} nav-link", style: "width: 15%; min-width: 150px;" %>
 </nav>
 
 <div id="s" style="text-align: center;">
