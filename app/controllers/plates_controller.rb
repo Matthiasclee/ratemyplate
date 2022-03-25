@@ -25,8 +25,8 @@ class PlatesController < ApplicationController
 
     @plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
     @plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
-    @plates_sorted = @plates.reverse if @sort_by == :newest
-    @plates_sorted = @plates if @sort_by == :oldest
+    @plates_sorted = @plates.sort_by(&:created_at).reverse if @sort_by == :newest
+    @plates_sorted = @plates.sort_by(&:created_at) if @sort_by == :oldest
     @plates = @plates_sorted
 
     @original_page = 1
