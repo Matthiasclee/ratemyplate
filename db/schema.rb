@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_12_220403) do
+ActiveRecord::Schema.define(version: 2022_03_26_132557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_220403) do
     t.string "imageurl"
     t.binary "image"
     t.string "meaning"
+    t.binary "images", default: [], array: true
     t.index ["plate", "state"], name: "index_plates_on_plate_and_state", unique: true
   end
 
