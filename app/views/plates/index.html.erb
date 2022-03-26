@@ -66,16 +66,11 @@
         <td>
           <% if plate.meaning %>
             <h3> <%= plate.meaning %> </h3>
-            <div class="container">
-              <img src="/blank_plate/<%= plate.state %>", style="width: 300px; opacity: 0.75;">
-              <h1> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h1>
-            </div>
-          <% else %>
-            <div class="container">
-              <img src="/blank_plate/<%= plate.state %>", style="width: 300px; opacity: 0.75;">
-              <h1> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h1>
-            </div>
           <% end %>
+          <div class="container">
+            <img src="/blank_plate/<%= plate.state %>", style="width: 300px; opacity: 0.75;">
+            <h1> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h1>
+          </div>
         </td>
       </tr>
     <% end %>
