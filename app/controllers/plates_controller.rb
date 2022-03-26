@@ -48,10 +48,14 @@ class PlatesController < ApplicationController
   end
 
   def up
-    @plate = Plate.find_by(id: params[:id])
-    @plate.score = @plate.score + 1
-    @plate.save
-    head :ok
+    if request.xhr?
+      @plate = Plate.find_by(id: params[:id])
+      @plate.score = @plate.score + 1
+      @plate.save
+      head :ok
+    else
+      head 500
+    end
   end
 
   # POST /plates or /plates.json
