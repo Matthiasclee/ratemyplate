@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   get '/blank_plate/:state', to: 'static#get_blank_plate'
   root 'plates#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  config.force_ssl=true
 end
