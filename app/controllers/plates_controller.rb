@@ -9,7 +9,7 @@ class PlatesController < ApplicationController
     states = %w(AK AL AR AZ CA CO CT DC DE FL GA HI IA ID IL IN KS KY LA MA MD ME MI MN MO MS MT NC ND NE NH NJ NM NV NY OH OK OR PA RI SC SD TN TX UT VA VT WA WI WV WY)
     scopes = [:all] + states
 
-    @sort_by = :score
+    @sort_by = :newest
     @sort_by = params[:sort_by].to_sym if params[:sort_by] && allowed_sorts.include?(params[:sort_by].to_sym)
 
     @scope = :all
