@@ -90,6 +90,11 @@ class PlatesController < ApplicationController
     end
   end
 
+  def new_img
+    @plate = Plate.find_by(id: params[:id])
+    render partial: "plates/new_img"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plate
