@@ -21,7 +21,8 @@ class PlatesController < ApplicationController
     @plates = Plate.all if @scope == :all
     @plates = Plate.where(state: @scope) if @scope != :all
 
-    @plates = @plates.where("plate like?", "%#{@query}%")
+    @plates = @plates.where("plate ~* ?", @query) + @plates.where("meaning ~* ?", @query)
+    @plates = @plates.uniq
 
     @plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
     @plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
