@@ -1,4 +1,8 @@
-<%= form_with(url: new_plate_image_path(@plate), method: :post) do |form| %>
+<%= form_with(model: @plate, url: new_plate_image_path(@plate), method: :post) do |form| %>
+  <div class="field">
+    
+  </div>
+
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image %>

@@ -14,18 +14,8 @@
 
 <table>
   <tbody>
-    <tr>
-      <td>
-        <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
-        <!-- ˅ -->
-        <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
-      </td>
-      <td>
-        <% if plate.imageurl %>
-          <img width="300px" src="<%= plate.imageurl[0] == "/" ? plate.imageurl : "/" + plate.imageurl %>">
-        <% end %>
-      </td>
-    </tr>
+    <% @plate = plate %>
+    <%= render partial: "plates/plate" %>
   </tbody>
 </table>
 <script>disableUpvotedPlates()</script>

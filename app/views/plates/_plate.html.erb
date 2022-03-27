@@ -1,0 +1,41 @@
+<% plate = @plate %>
+<tr>
+  <td>
+    <h1> <%= link_to '˄', up_plate_path(plate), class: "upvote", onclick: "addHrefToStorage('#{up_plate_path(plate)}')",remote: true %> </h1>
+    <!-- ˅ -->
+    <h2 id="<%= up_plate_path(plate) %>"> <%= plate.score %> </h2>
+  </td>
+  <td>
+
+    <div id="c<%= plate.id.to_s %>" class="carousel slide" data-bs-interval="false">
+      <div class="carousel-inner">
+        <% if plate.meaning %>
+          <h3 style="text-align:center;"> <%= plate.meaning %> </h3>
+        <% end %>
+
+        <div class="carousel-item active">
+          <div class="container">
+            <img src="/blank_plate/<%= plate.state %>", style="width: 325px; opacity: 0.75;">
+            <h1> <%= (link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h1>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img width="325px" src="<%= plate.imageurl %>">
+        </div>
+
+        <% plate.imageurls.each do |imageurl| %>
+          <div class="carousel-item">
+            <img width="325px" src="<%= imageurl %>">
+          </div>
+        <% end %>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#c<%= plate.id.to_s %>" data-bs-slide="prev">
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#c<%= plate.id.to_s %>" data-bs-slide="next">
+        </button>
+      </div>
+
+  </td>
+</tr>

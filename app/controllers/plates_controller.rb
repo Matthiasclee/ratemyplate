@@ -102,7 +102,7 @@ class PlatesController < ApplicationController
     @plate.imageurls << "/plate_img/#{@plate.id}/#{@plate.images.length-1}"
     @plate.save
 
-    redirect_to plates_path(@plate)
+    redirect_to plate_path(@plate)
   end
 
   private
@@ -113,6 +113,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.permit(:plate, :state, :image, :sort_by, :scope, :query, :page, :meaning)
+      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query, :page, :meaning)
     end
 end
