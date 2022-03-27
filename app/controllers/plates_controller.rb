@@ -95,6 +95,16 @@ class PlatesController < ApplicationController
     render partial: "plates/new_img"
   end
 
+  def add_new_img
+    @plate = Plate.find_by(id: params[:id])
+    File.write(Rails.root.join("tmpimg"), plate_params[:image].read, mode: "wb")
+    @plate.images << File.read("tmpimg", mode: "rb").dump
+    @plate.imageurls << "/plate_img/#{@plate.id}/#{@plate.images.length-1}"
+    @plate.save
+
+    redirect_to plates_path(@plate)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plate
@@ -103,6 +113,6 @@ class PlatesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plate_params
-      params.require(:plate).permit(:plate, :state, :image, :sort_by, :scope, :query, :page, :meaning)
+      params.permit(:plate, :state, :image, :sort_by, :scope, :query, :page, :meaning)
     end
 end
