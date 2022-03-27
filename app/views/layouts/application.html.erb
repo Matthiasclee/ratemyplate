@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'plates' %>
   </head>
@@ -63,6 +64,11 @@
             <% end %>
 
           </ul>
+
+          <span class="tavbar-text" style="margin-right: 10px;">
+            <%= link_to '<i class="bi bi-github"></i>'.html_safe, 'https://github.com/Matthiasclee/ratemyplate' %>
+          </span>
+
           <%= form_with(url: "/plates", method: :get, class: "d-flex") do |form| %>
             <%= form.hidden_field :sort_by, value: @sort_by %>
             <%= form.hidden_field :scope, value: @scope %>
