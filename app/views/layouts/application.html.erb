@@ -34,28 +34,34 @@
             <li class="nav-item">
               <%= link_to 'Submit new plate', new_plate_path, class: "btn btn-success nav-link always_black" %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score ? "primary" : "secondary"} nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score_least ? "primary" : "secondary"} nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :newest ? "primary" : "secondary"} nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :oldest ? "primary" : "secondary"} nav-link" %>
-            </li>
-            <li class="nav-item dropdown">
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="stateSelect" data-bs-toggle="dropdown"  aria-expanded="false">
-                  Select state: <%= scope_names[@scope.to_s] %>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="stateSelect">
-                  <%= render "plates/statelist" %>
+
+            <% if params[:controller] == "plates" && params[:action] == "index" %>
+
+              <li class="nav-item">
+                <%= link_to 'Highest voted', "?sort_by=score&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score ? "primary" : "secondary"} nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Lowest voted', "?sort_by=score_least&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :score_least ? "primary" : "secondary"} nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Newest', "?sort_by=newest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :newest ? "primary" : "secondary"} nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :oldest ? "primary" : "secondary"} nav-link" %>
+              </li>
+              <li class="nav-item dropdown">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="stateSelect" data-bs-toggle="dropdown"  aria-expanded="false">
+                    Select state: <%= scope_names[@scope.to_s] %>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="stateSelect">
+                    <%= render "plates/statelist" %>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+
+            <% end %>
+
           </ul>
           <%= form_with(url: "/plates", method: :get, class: "d-flex") do |form| %>
             <%= form.hidden_field :sort_by, value: @sort_by %>
@@ -64,7 +70,7 @@
             <%= form.text_field :query, value: @query, class: "form-control me-2", placeholder: "Search" %>
 
             <%= form.submit :Search, class: "btn btn-outline-success", style: "display: inline-block;" %>
-          <% end %>
+          <% end if params[:controller] == "plates" && params[:action] == "index" %>
         </div>
       </div>
     </nav>
