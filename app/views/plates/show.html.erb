@@ -10,7 +10,7 @@
 <% end %>
 
 <h4>State: <%= state_names[plate.state] %> (<%= plate.state %>)</h4>
-<h4>Spotted on: <%= plate.created_at %> </h4>
+<h4>Spotted on: <%= plate.created_at.strftime("%m/%d/%Y") %> </h4>
 
 <table>
   <tbody>
