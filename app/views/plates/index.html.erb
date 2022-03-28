@@ -13,6 +13,7 @@
 </table>
 <h3 style="text-align: center;">
   <%= link_to '<-- Previous page', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page - 1}", class: "always_black btn btn-secondary" %>
+  <%= @original_page %>
   <%= link_to 'Next page -->', "?sort_by=#{@sort_by}&scope=#{@scope}&query=#{@query}&page=#{@original_page + 1}", class: "always_black btn btn-secondary" %>
 </h3>
 
