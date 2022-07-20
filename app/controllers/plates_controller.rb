@@ -60,6 +60,7 @@ class PlatesController < ApplicationController
 
   # POST /plates or /plates.json
   def create
+    render plain: params.to_s
     @plate = Plate.new()
     @plate.meaning = params[:Body]
     if params[:NumMedia] == 0
