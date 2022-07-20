@@ -13,30 +13,7 @@
           <h3 style="text-align:center;"> <%= plate.meaning %> </h3>
         <% end %>
 
-          <img width="325px" src="<%= plate.twilioimage %>">
-
-        <!--
-        <div class="carousel-item active">
-          <div class="container">
-            <img src="/blank_plate/<%= #plate.state %>", style="width: 325px; opacity: 0.75;">
-            <h1> <%= #(link_to "#{plate.plate}", plate, class: 'always_black centered', style: "text-decoration: none;") %> </h1>
-          </div>
-          </div>
-        -->
-
-        <!--
-        <div class="carousel-item">
-          <img width="325px" src="<%= #plate.twilioimage %>">
-          </div>
-        -->
-
-        <!--
-        <% #plate.imageurls.each do |imageurl| %>
-          <div class="carousel-item">
-            <img width="325px" src="<%= #imageurl %>">
-          </div>
-        <% #end %>
-        -->
+        <img width="325px" src="<%= plate.twilioimage %>">
 
         <button class="carousel-control-prev" type="button" data-bs-target="#c<%= plate.id.to_s %>" data-bs-slide="prev">
         </button>
