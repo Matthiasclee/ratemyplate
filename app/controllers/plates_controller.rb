@@ -60,11 +60,10 @@ class PlatesController < ApplicationController
 
   # POST /plates or /plates.json
   def create
-    render plain: params.to_s
-    return
+    params.permit!
     @plate = Plate.new()
     @plate.meaning = params[:Body]
-    if params[:NumMedia] == 0
+    if params[:NumMedia].to_i == 0
       render plain: "Image not provided"
       return
     end
