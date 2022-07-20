@@ -10,14 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_27_152325) do
+ActiveRecord::Schema.define(version: 2022_07_20_155756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "plates", force: :cascade do |t|
-    t.string "plate"
-    t.string "state"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "score"
@@ -26,7 +24,8 @@ ActiveRecord::Schema.define(version: 2022_03_27_152325) do
     t.string "meaning"
     t.string "images", default: [], array: true
     t.string "imageurls", default: [], array: true
-    t.index ["plate", "state"], name: "index_plates_on_plate_and_state", unique: true
+    t.string "twilioimage"
+    t.boolean "from_phone"
   end
 
 end

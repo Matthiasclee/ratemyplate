@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <%= link_to 'Submit new plate', new_plate_path, class: "btn btn-success nav-link always_black" %>
+              <%= link_to 'Send your plates to (309) A GR8 PL8', 'tel:+13092478758', class: "btn btn-success nav-link always_black" %>
             </li>
 
             <% if params[:controller] == "plates" && params[:action] == "index" %>
@@ -50,6 +50,7 @@
               <li class="nav-item">
                 <%= link_to 'Oldest', "?sort_by=oldest&scope=#{@scope}&query=#{@query}", class: "always_black btn btn-#{@sort_by == :oldest ? "primary" : "secondary"} nav-link" %>
               </li>
+              <!--
               <li class="nav-item dropdown">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="stateSelect" data-bs-toggle="dropdown"  aria-expanded="false">
@@ -60,7 +61,7 @@
                   </div>
                 </div>
               </li>
-
+              -->
             <% end %>
 
           </ul>

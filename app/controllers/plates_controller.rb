@@ -1,5 +1,6 @@
 class PlatesController < ApplicationController
   before_action :set_plate, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token
   ITEMS_PER_PAGE = 25
 
   # GET /plates or /plates.json
@@ -18,11 +19,9 @@ class PlatesController < ApplicationController
     @query = ""
     @query = params[:query].upcase.gsub("0", "O") if params[:query]
 
-    @plates = Plate.all if @scope == :all
-    @plates = Plate.where(state: @scope) if @scope != :all
+    @plates = Plate.all
 
-    @plates = @plates.where("plate ~* ?", @query) + @plates.where("meaning ~* ?", @query)
-    @plates = @plates.uniq
+    @plates = @plates.where("meaning ~* ?", @query)
 
     @plates_sorted = @plates.sort_by(&:score).reverse if @sort_by == :score
     @plates_sorted = @plates.sort_by(&:score) if @sort_by == :score_least
@@ -61,26 +60,17 @@ class PlatesController < ApplicationController
 
   # POST /plates or /plates.json
   def create
-    @plate = Plate.new(plate_params.except(:image, :meaning))
-    @plate.score = 0
-    @plate.plate = @plate.plate.gsub("0", "O").upcase
-
-    state_names = {"AK"=>"Alaska", "AL"=>"Alabama", "AR"=>"Arkansas", "AZ"=>"Arizona", "CA"=>"California", "CO"=>"Colorado", "CT"=>"Connecticut", "DC"=>"D.c.", "DE"=>"Delaware", "FL"=>"Florida", "GA"=>"Georgia", "HI"=>"Hawaii", "IA"=>"Iowa", "ID"=>"Idaho", "IL"=>"Illinois", "IN"=>"Indiana", "KS"=>"Kansas", "KY"=>"Kentucky", "LA"=>"Louisiana", "MA"=>"Massachusetts", "MD"=>"Maryland", "ME"=>"Maine", "MI"=>"Michigan", "MN"=>"Minnesota", "MO"=>"Missouri", "MS"=>"Mississippi", "MT"=>"Montana", "NC"=>"North carolina", "ND"=>"North dakota", "NE"=>"Nebraska", "NH"=>"New hampshire", "NJ"=>"New jersey", "NM"=>"New mexico", "NV"=>"Nevada", "NY"=>"New york", "OH"=>"Ohio", "OK"=>"Oklahoma", "OR"=>"Oregon", "PA"=>"Pennsylvania", "RI"=>"Rhode island", "SC"=>"South carolina", "SD"=>"South dakota", "TN"=>"Tennessee", "TX"=>"Texas", "UT"=>"Utah", "VA"=>"Virginia", "VT"=>"Vermont", "WA"=>"Washington", "WI"=>"Wisconsin", "WV"=>"West virginia", "WY"=>"Wyoming"}
-    @plate.state.downcase!
-    @plate.state[0] = @plate.state[0].upcase
-    @plate.state = state_names.key(@plate.state)
-
-    @plate.meaning = @plate.plate
-    @plate.meaning = plate_params[:meaning] if plate_params[:meaning].length > 0
-
-    if plate_params[:image]
-      File.write(Rails.root.join("tmpimg"), plate_params[:image].read, mode: "wb")
-      @plate.image = File.read("tmpimg", mode: "rb")
+    @plate = Plate.new()
+    @plate.meaning = params[:Body]
+    if params[:NumMedia] == 0
+      render plain: "Image not provided"
+      return
     end
+    @plate.twilioimage = params[:MediaUrl0]
+    @plate.score = 0
 
     respond_to do |format|
       if @plate.save
-        @plate.imageurl = @plate.imageurl = "/static?id=" + @plate.id.to_s
         @plate.save
         format.html { redirect_to plate_url(@plate), notice: "Plate was successfully created." }
         format.json { render :show, status: :created, location: @plate }
