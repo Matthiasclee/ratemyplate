@@ -68,17 +68,9 @@ class PlatesController < ApplicationController
     end
     @plate.twilioimage = params[:MediaUrl0]
     @plate.score = 0
-
-    respond_to do |format|
-      if @plate.save
-        @plate.save
-        format.html { redirect_to plate_url(@plate), notice: "Plate was successfully created." }
-        format.json { render :show, status: :created, location: @plate }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @plate.errors, status: :unprocessable_entity }
-      end
-    end
+    
+    @plate.save
+    render plain: 'Plate submitted'
   end
 
   def new_img
